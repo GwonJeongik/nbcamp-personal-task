@@ -18,15 +18,21 @@ import java.util.Scanner;
  * <p>
  * 4. 반복문을 사용하여 반복의 종료를 알려주는 “exit” 문자열을 입력하기 전까지 무한으로 계산을 진행할 수 있도록 소스 코드를 수정합니다.
  * - 반복문을 사용합니다. (e.g. for, while …)
+ *
+ * 5. 연산 결과 10개를 저장할 수 있는 배열을 선언 및 생성하고 연산의 결과를 저장합니다.
+ *     - 연산의 결과를 저장할 수 있도록 적합한 타입의 배열을 생성합니다.
+ *     - 연산의 결과를 비어있는 곳에 저장하기 위해 저장할 때마다 count 합니다.
  */
 
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        double[] results = new double[10];
+        int count = 0;
 
-        while (true) {
+        while (count < results.length) {
 
-            System.out.print("종료를 원하면 \"exit\"를 아니면, 아무값이나 입력하세요: ");
+            System.out.print("종료를 원하면 \"exit\"를, 진행하려면 아무값이나 입력하세요: ");
             if (scanner.nextLine().equals("exit")) {
                 return;
             }
@@ -53,16 +59,17 @@ public class App {
                 case "/":
                     if (secondNum == 0) {
                         System.out.println("입력된 분모(secondNum)는 " + secondNum + "입니다. 0으로 나눌 수 없습니다.");
-                        return;
+                        continue;
                     } else {
                         result = firstNum / (double) secondNum;
                         break;
                     }
 
                 default:
-                    System.out.println("[" + operation + "]" + "은 연산기호가 아닙니다. \nresult가 존재하지 않습니다.");
-                    return;
+                    System.out.println("[" + operation + "]" + "은 연산기호가 아닙니다.");
+                    continue;
             }
+            results[count++] = result;
             System.out.println("사칙연산 결과는: " + result + "입니다.");
         }
     }
