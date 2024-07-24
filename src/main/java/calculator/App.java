@@ -9,6 +9,12 @@ import java.util.Scanner;
  *
  * 2. Scanner를 사용하여 사칙연산 기호를 전달 받을 수 있습니다.
  *  * - 사칙연산 기호를 적합한 타입으로 선언한 변수에 저장합니다. (`charAt(0)`)
+ *
+ *  3. 입력받은 양의 정수 2개와 사칙연산 기호를 사용하여 연산을 진행한 후 결과값을 출력합니다.
+ *  * - 사칙연산 기호에 맞는 연산자를 사용하여 연산을 진행합니다.
+ *  * - 입력받은 연산 기호를 구분하기 위해 제어문을 사용합니다. (e.g.if, switch)
+ *  * - 연산 오류가 발생할 경우 해당 오류에 대한 내용을 정제하여 출력합니다.
+ *  * - e.g. “나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다. “
  */
 
 public class App {
@@ -22,5 +28,31 @@ public class App {
         int secondNum = scanner.nextInt();
         System.out.print("사칙연산 기호를 입력하세요: ");
         char operation = scanner.nextLine().charAt(0); // String 타입으로 받은 문자의 처음만 유효하다.
+
+        double result;
+        switch (operation) {
+            case '+':
+                result = firstNum + secondNum;
+                break;
+            case '-':
+                result = firstNum - secondNum;
+                break;
+            case '*':
+                result = firstNum * secondNum;
+                break;
+            case '/':
+                if (secondNum == 0) {
+                    System.out.println("입력된 분모(secondNum)는 " + secondNum + "입니다. 0으로 나눌 수 없습니다.");
+                    return;
+                } else {
+                    result = firstNum / (double) secondNum;
+                    break;
+                }
+
+            default:
+                System.out.println("[" + operation + "]" + "은 연산기호가 아닙니다. \nresult가 존재하지 않습니다.");
+                return;
+        }
+        System.out.println("사칙연산 결과는: " + result + "입니다.");
     }
 }
