@@ -33,7 +33,7 @@ public class App {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        double[] results = new double[1];
+        double[] results = new double[10];
         int count = 0;
 
         while (true) {
