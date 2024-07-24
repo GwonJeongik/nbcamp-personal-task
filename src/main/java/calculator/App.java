@@ -33,6 +33,9 @@ import java.util.Scanner;
  * 7. 연산 결과가 10개로 고정되지 않고 무한이 저장될 수 있도록 소스 코드를 수정합니다.
  * - JCF(Java Collection Framework)를 사용합니다. (e.g. List, Set …)
  * - “remove”라는 문자열을 입력받으면 가장 먼저 저장된 결과가 삭제될 수 있도록 구현합니다.
+ * <p>
+ * 8. “**inquiry”라는 문자열이 입력되면 저장된 연산 결과 전부를 출력합니다.**
+ * - foreach(향상된 for문)을 활용하여 구현 해봅니다.
  */
 
 public class App {
@@ -80,14 +83,22 @@ public class App {
             results.add(result);
             System.out.println("사칙연산 결과는: " + result + "입니다.");
 
-            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까?(\"remove\" 입력시 삭제)");
+            System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? 아닐 시 enter. (\"remove\" 입력 시 삭제) : ");
             if (scanner.nextLine().equals("remove")) {
                 Double removeValue = results.removeFirst();
                 System.out.println("가장 먼저 입력한 값이 삭제되었습니다. 삭제된 값: " + removeValue);
             }
 
+            // 리스트에 담긴 정보 모두 조회
+            System.out.print("저장된 연산결과를 조회하시겠습니까? 아닐 시 enter. (\"inquiry\" 입력 시 조회) : ");
+            if (scanner.nextLine().equals("inquiry")) {
+                for (Double value : results) {
+                    System.out.print("[" + value + "] ");
+                }
+            }
+
             // while문 종료 확인
-            System.out.print("더 계산하시겠습니까? 아닐 시 아무값을 입력하세요. (exit 입력 시 종료) : ");
+            System.out.print("계산을 종료 하시겠습니까? 아닐 시 enter. (exit 입력 시 종료) : ");
             if (scanner.nextLine().equals("exit")) {
                 System.out.println("프로그램을 종료합니다.");
                 return;
@@ -95,5 +106,4 @@ public class App {
         }
 
     }
-
 }
