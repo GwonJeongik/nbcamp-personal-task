@@ -1,50 +1,63 @@
 package calculator.extendz;
 
 import calculator.Calculator;
+import calculator.extendz.fouroperator.*;
+
+/**
+ * 1. 스위치 -> 결과 반환x -> operate만 반환 -> 연산자만 반환
+ * 2. 반환된 연산자를 이용해서
+ */
 
 public class ArithmeticCalculator extends Calculator {
 
+    /**
+     * 산술 계산 기능은 산술 계산기에 담음.
+     * 조회, 삭제, 저장배열은 부모에게 있음.
+     */
 
-    // 산술 계산 기능은 산술 계산기에
     public double calculate(int firstNum, int secondNum, String operator) {
 
+        // 작업1
         if (isNotPositive(firstNum, secondNum)) {
             throw new RuntimeException("firstNum = " + firstNum + ", secondNum = " + secondNum + ", 두 수 모두 양수여야 합니다.");
         }
 
         double result;
 
+        // 작업2
+        Operate operate = checkOperate(secondNum, operator);
+
+        // 작업3
+        result = operate.operate(firstNum, secondNum);
+        getResults().add(result);
+        return result;
+    }
+
+    private Operate checkOperate(int secondNum, String operator) {
         switch (operator) {
 
             case "+":
-                result = firstNum + secondNum;
-                break;
+                return new AddOperate();
 
             case "-":
-                result = firstNum - secondNum;
-                break;
+                return new SubtractOperate();
 
             case "*":
-                result = firstNum * secondNum;
-                break;
+                return new MultiplyOperate();
 
             case "/":
                 if (secondNum == 0) {
                     throw new RuntimeException("입력된 분모(secondNum)는 " + secondNum + "입니다. 0으로 나눌 수 없습니다.");
                 } else {
-                    result = firstNum / (double) secondNum;
-                    break;
+                    return new DivideOperate();
                 }
 
             default:
                 throw new RuntimeException("[" + operator + "]" + "은 연산기호가 아닙니다.");
         }
-
-        getResults().add(result);
-        return result;
     }
 
-    private static boolean isNotPositive(int firstNum, int secondNum) {
+    private boolean isNotPositive(int firstNum, int secondNum) {
         return !(firstNum >= 0 && secondNum >= 0);
     }
 }

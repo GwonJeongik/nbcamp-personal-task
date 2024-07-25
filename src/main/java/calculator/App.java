@@ -2,6 +2,7 @@ package calculator;
 
 import calculator.extendz.ArithmeticCalculator;
 import calculator.extendz.CircleCalculator;
+import calculator.extendz.fouroperator.AddOperate;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -37,6 +38,13 @@ import java.util.Scanner;
  * <p>
  * 8. “**inquiry”라는 문자열이 입력되면 저장된 연산 결과 전부를 출력합니다.**
  * - foreach(향상된 for문)을 활용하여 구현 해봅니다.
+ *
+ * 9. ArithmeticCalculator 클래스의 연산 메서드에 책임(역할)이 많아 보입니다.
+ *    사칙연산 각각의 기능을 담당하는 AddOperator, SubtractOperator, MultiplyOperator, DivideOperator 클래스를 만들어,
+ *    연산 메서드의 책임을 분리 해봅니다. (SRP) v
+ *     - Calculator 클래스에 사칙연산 클래스들을 어떻게 활용할 수 있을지 고민 해봅니다. (포함 관계)
+ *     - 활용 방법을 찾아 적용했을 때 사칙연산 클래스들을 초기화 해야하는데 이때, 반드시 생성자를 활용해 봅니다.
+ *     - 마찬가지로 ArithmeticCalculator 클래스의 연산 메서드를 수정 하더라도 이전과 똑같이 동작해야합니다.
  */
 
 public class App {
