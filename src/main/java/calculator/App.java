@@ -1,5 +1,8 @@
 package calculator;
 
+import calculator.extendz.ArithmeticCalculator;
+import calculator.extendz.CircleCalculator;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -41,7 +44,9 @@ public class App {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator(new ArrayList<>(), new ArrayList<>());
+        Calculator calculator;
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        CircleCalculator circleCalculator = new CircleCalculator();
 
         while (true) {
 
@@ -59,21 +64,10 @@ public class App {
                     String operator = scanner.nextLine();
 
                     //사칙 연산 수행
-                    double result = calculator.calculate(firstNum, secondNum, operator);
+                    double result = arithmeticCalculator.calculate(firstNum, secondNum, operator);
                     System.out.println("사칙연산 결과는: " + result + "입니다.");
 
-                    // 오래된 연산 결과 삭제 코드
-                    System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? 아닐 시 enter. (\"remove\" 입력 시 삭제) : ");
-                    if (scanner.nextLine().equals("remove")) {
-                        Double removeFirstValue = calculator.removeFirst();
-                        System.out.println("가장 먼저 입력한 값이 삭제되었습니다. 삭제된 값: " + removeFirstValue);
-                    }
-
-                    // 리스트에 담긴 정보 모두 조회 코드
-                    System.out.print("저장된 연산결과를 조회하시겠습니까? 아닐 시 enter. (\"inquiry\" 입력 시 조회) : ");
-                    if (scanner.nextLine().equals("inquiry")) {
-                        calculator.findAllResults();
-                    }
+                    calculator = arithmeticCalculator;
                     break;
 
                 case 2:
@@ -82,15 +76,28 @@ public class App {
                     scanner.nextLine(); // 줄먹
 
                     // 원의 넓이 연산 수행
-                    double area = calculator.calculationArea(radius);
+                    double area = circleCalculator.calculationArea(radius);
                     System.out.println("원의 넓이는 " + area + "입니다.");
 
-                    // 원의 넓이 조회
-                    System.out.print("저장된 원의 넓이 값을 조회하시겠습니까? 아닐 시 enter. (\"inquiry\" 입력 시 조회) : ");
-                    if (scanner.nextLine().equals("inquiry")) {
-                        calculator.findAllAreas();
-                    }
+                    calculator = circleCalculator;
                     break;
+
+                default:
+                    System.out.println("옵션을 다시 선택해주세요!");
+                    continue;
+            }
+
+            // 오래된 결과 삭제 코드
+            System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? 아닐 시 enter. (\"remove\" 입력 시 삭제) : ");
+            if (scanner.nextLine().equals("remove")) {
+                Double removeFirstValue = calculator.removeFirst();
+                System.out.println("가장 먼저 입력한 값이 삭제되었습니다. 삭제된 값: " + removeFirstValue);
+            }
+
+            // 값 조회
+            System.out.print("저장된 연산결과를 조회하시겠습니까? 아닐 시 enter. (\"inquiry\" 입력 시 조회) : ");
+            if (scanner.nextLine().equals("inquiry")) {
+                calculator.findAllResults();
             }
 
             // 종료 코드

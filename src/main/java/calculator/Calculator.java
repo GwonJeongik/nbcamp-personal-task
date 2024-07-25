@@ -41,7 +41,7 @@ import java.util.ArrayList;
  */
 
 //매개변수로 해당 오류 내용을 전달하라는 게 뭔말이지?
-public class Calculator {
+public abstract class Calculator {
 
 
     // final static은 사용할 수 없다. -> 사용하려면 생성자 주입을 빼야한다. ->
@@ -61,32 +61,17 @@ public class Calculator {
     // 새로운 Calculator 인스턴스를 생성해도 자료구조에 추가된 값은 보존 상태.
     // 하지만, 인스턴스마다 자료구조를 새로 만들어서 사용하고 싶다면 -> final로 선언해서 참조를 변경할 수 없게 막아놔야함. -> 불상사 방지...
 
-    private final ArrayList<Double> areas;
+    /**
+     * calculator를 상속받는 클래스는 결과 저장소, 조회 기능을 공통으로 가져갈 수 있다.
+     */
     private final ArrayList<Double> results;
 
-    public Calculator(ArrayList<Double> results, ArrayList<Double> areas) {
-        this.results = results;
-        this.areas = areas;
+    public Calculator() {
+        this.results = new ArrayList<>();
     }
 
     public ArrayList<Double> getResults() {
         return results;
-    }
-
-    public double setResults(int index, double setNum) {
-        return results.set(index, setNum);
-    }
-
-    public ArrayList<Double> getAreas() {
-        return areas;
-    }
-
-    public double setAreas(int index, double setArea) {
-        return areas.set(index, setArea);
-    }
-
-    public Double removeFirst() {
-        return results.remove(0);
     }
 
     public void findAllResults() {
@@ -96,59 +81,8 @@ public class Calculator {
         System.out.println();
     }
 
-    public double calculate(int firstNum, int secondNum, String operator) {
-
-        if (isNotPositive(firstNum, secondNum)) {
-            throw new RuntimeException("firstNum = " + firstNum + ", secondNum = " + secondNum + ", 두 수 모두 양수여야 합니다.");
-        }
-
-        double result;
-
-        switch (operator) {
-
-            case "+":
-                result = firstNum + secondNum;
-                break;
-
-            case "-":
-                result = firstNum - secondNum;
-                break;
-
-            case "*":
-                result = firstNum * secondNum;
-                break;
-
-            case "/":
-                if (secondNum == 0) {
-                    throw new RuntimeException("입력된 분모(secondNum)는 " + secondNum + "입니다. 0으로 나눌 수 없습니다.");
-                } else {
-                    result = firstNum / (double) secondNum;
-                    break;
-                }
-
-            default:
-                throw new RuntimeException("[" + operator + "]" + "은 연산기호가 아닙니다.");
-        }
-
-        results.add(result);
-        return result;
-    }
-
-    public double calculationArea(int radius) {
-        double area = (radius * radius * Math.PI);
-        areas.add(area);
-        return area;
-    }
-
-    public void findAllAreas() {
-        for (Double area : areas) {
-            System.out.print("[" + area + "] ");
-        }
-        System.out.println();
-    }
-
-    private static boolean isNotPositive(int firstNum, int secondNum) {
-        return !(firstNum >= 0 && secondNum >= 0);
+    public Double removeFirst() {
+        return results.remove(0);
     }
 
 }
