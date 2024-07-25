@@ -2,9 +2,8 @@ package calculator;
 
 import calculator.extendz.ArithmeticCalculator;
 import calculator.extendz.CircleCalculator;
-import calculator.extendz.fouroperator.AddOperate;
+import calculator.extendz.fouroperator.OperatorType;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -68,6 +67,17 @@ public class App {
                     System.out.print("두 번째 숫자를 입력하세요: ");
                     int secondNum = scanner.nextInt();
                     scanner.nextLine(); // 줄먹기
+
+                    // 의식의 흐름 1
+                    // 여기서 OperatorType로 받을 수 없을까? -> 여기서 다시 if || switch로 걸러야 하나?
+                    // -> 여기서 사칙연산 기호를 확정 -> calculate로 가서 checkOperator를 통해 연산 객체를 반환받고...
+                    //여기서 조건문으로 한 번, calculate로 가서 다시 한 번... 뭔가 좀... 별로?
+                    // 만약 새로운 연산기호가 추가되면 OCP원칙에 위배되지 않음? 결국 App, ArithmeticCalculator도 수정하게 되니까.
+                    //===============================================================================================
+                    // 의식의 흐름 3
+                    // java.lang.enum 클래스의 메서드 valueOf() 사용.... -> 아.. 결국 OperatorType의 상수명으로 받아야하는... 구나..
+                    // OperatorType operator = OperatorType.valueOf(scanner.nextLine()); -> 실패ㅎㅎ
+                    //===============================================================================================
                     System.out.print("사칙연산 기호를 입력하세요: ");
                     String operator = scanner.nextLine();
 
