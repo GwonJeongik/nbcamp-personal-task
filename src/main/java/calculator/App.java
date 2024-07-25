@@ -1,8 +1,6 @@
 package calculator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -43,40 +41,64 @@ public class App {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator(new ArrayList<>());
+        Calculator calculator = new Calculator(new ArrayList<>(), new ArrayList<>());
 
         while (true) {
 
-            System.out.print("첫 번째 숫자를 입력하세요: ");
-            int firstNum = scanner.nextInt();
-            System.out.print("두 번째 숫자를 입력하세요: ");
-            int secondNum = scanner.nextInt();
-            scanner.nextLine(); // 줄먹기
-            System.out.print("사칙연산 기호를 입력하세요: ");
-            String operator = scanner.nextLine(); // String 타입으로 받은 문자의 처음만 유효하다.
+            System.out.println("1. 사칙연산 | 2. 원의 넓이");
+            int option = scanner.nextInt();
 
-            double result = calculator.calculate(firstNum, secondNum, operator);
-            System.out.println("사칙연산 결과는: " + result + "입니다.");
+            switch (option) {
+                case 1:
+                    System.out.print("첫 번째 숫자를 입력하세요: ");
+                    int firstNum = scanner.nextInt();
+                    System.out.print("두 번째 숫자를 입력하세요: ");
+                    int secondNum = scanner.nextInt();
+                    scanner.nextLine(); // 줄먹기
+                    System.out.print("사칙연산 기호를 입력하세요: ");
+                    String operator = scanner.nextLine();
 
-            System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? 아닐 시 enter. (\"remove\" 입력 시 삭제) : ");
-            if (scanner.nextLine().equals("remove")) {
-                Double removeFirstValue = calculator.removeFirst();
-                System.out.println("가장 먼저 입력한 값이 삭제되었습니다. 삭제된 값: " + removeFirstValue);
+                    //사칙 연산 수행
+                    double result = calculator.calculate(firstNum, secondNum, operator);
+                    System.out.println("사칙연산 결과는: " + result + "입니다.");
+
+                    // 오래된 연산 결과 삭제 코드
+                    System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? 아닐 시 enter. (\"remove\" 입력 시 삭제) : ");
+                    if (scanner.nextLine().equals("remove")) {
+                        Double removeFirstValue = calculator.removeFirst();
+                        System.out.println("가장 먼저 입력한 값이 삭제되었습니다. 삭제된 값: " + removeFirstValue);
+                    }
+
+                    // 리스트에 담긴 정보 모두 조회 코드
+                    System.out.print("저장된 연산결과를 조회하시겠습니까? 아닐 시 enter. (\"inquiry\" 입력 시 조회) : ");
+                    if (scanner.nextLine().equals("inquiry")) {
+                        calculator.findAllResults();
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("반지름을 입력하세요: ");
+                    int radius = scanner.nextInt();
+                    scanner.nextLine(); // 줄먹
+
+                    // 원의 넓이 연산 수행
+                    double area = calculator.calculationArea(radius);
+                    System.out.println("원의 넓이는 " + area + "입니다.");
+
+                    // 원의 넓이 조회
+                    System.out.print("저장된 원의 넓이 값을 조회하시겠습니까? 아닐 시 enter. (\"inquiry\" 입력 시 조회) : ");
+                    if (scanner.nextLine().equals("inquiry")) {
+                        calculator.findAllAreas();
+                    }
+                    break;
             }
 
-            // 리스트에 담긴 정보 모두 조회
-            System.out.print("저장된 연산결과를 조회하시겠습니까? 아닐 시 enter. (\"inquiry\" 입력 시 조회) : ");
-            if (scanner.nextLine().equals("inquiry")) {
-                calculator.findAll();
-            }
-
-            // while문 종료 확인
+            // 종료 코드
             System.out.print("계산을 종료 하시겠습니까? 아닐 시 enter. (\"exit\" 입력 시 종료) : ");
             if (scanner.nextLine().equals("exit")) {
                 System.out.println("프로그램을 종료합니다.");
                 return;
             }
         }
-
     }
 }
