@@ -13,6 +13,11 @@ import java.util.LinkedList;
  * - 연산 수행 역할은 Calculator 클래스가 담당합니다.
  * - 연산 결과는 Calculator 클래스의 연산 결과를 저장하는 필드에 저장됩니다.
  * - 소스 코드 수정 후에도 수정 전의 기능들이 반드시 똑같이 동작해야합니다.
+ * <p>
+ * 3. App 클래스의 main 메서드에서 Calculator 클래스의 연산 결과를 저장하고 있는 컬렉션 필드에 직접 접근하지 못하도록 수정합니다. (캡슐화)
+ * - 간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현합니다. (Getter 메서드)
+ * - 간접 접근을 통해 필드에 접근하여 수정할 수 있도록 구현합니다. (Setter 메서드)
+ * - 위 요구사항을 모두 구현 했다면 App 클래스의 main 메서드에서 위에서 구현한 메서드를 활용 해봅니다.
  */
 
 public class Calculator {
@@ -24,6 +29,11 @@ public class Calculator {
     public ArrayList<Double> getResults() {
         return results;
     }
+
+    public Double setResults(int index, double setNum) {
+        return results.set(index, setNum);
+    }
+
 
     public double calculate(int firstNum, int secondNum, String operator) {
 
