@@ -1,7 +1,6 @@
 package calculator.extendz;
 
 import calculator.Calculator;
-import calculator.extendz.fouroperator.Operate;
 
 public class CircleCalculator extends Calculator {
 

@@ -1,8 +1,7 @@
 package calculator.extendz.fouroperator;
 
-public class AddOperate implements Operate {
+public class AddOperate {
 
-    @Override
     public double operate(int firstNum, int secondNum) {
 
         double result = firstNum + secondNum;

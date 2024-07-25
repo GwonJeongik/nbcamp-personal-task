@@ -9,6 +9,18 @@ import calculator.extendz.fouroperator.*;
  */
 
 public class ArithmeticCalculator extends Calculator {
+    AddOperate addOperate;
+    SubtractOperate subtractOperate;
+    MultiplyOperate multiplyOperate;
+    DivideOperate divideOperate;
+
+    public ArithmeticCalculator() {
+
+        this.addOperate = new AddOperate();
+        this.subtractOperate = new SubtractOperate();
+        this.multiplyOperate = new MultiplyOperate();
+        this.divideOperate = new DivideOperate();
+    }
 
     /**
      * 산술 계산 기능은 산술 계산기에 담음.
@@ -16,6 +28,7 @@ public class ArithmeticCalculator extends Calculator {
      */
 
     public double calculate(int firstNum, int secondNum, String operator) {
+
 
         // 작업1
         if (isNotPositive(firstNum, secondNum)) {
@@ -25,36 +38,35 @@ public class ArithmeticCalculator extends Calculator {
         double result;
 
         // 작업2
-        Operate operate = checkOperate(secondNum, operator);
-
-        // 작업3
-        result = operate.operate(firstNum, secondNum);
-        getResults().add(result);
-        return result;
-    }
-
-    private Operate checkOperate(int secondNum, String operator) {
         switch (operator) {
 
             case "+":
-                return new AddOperate();
+                result = addOperate.operate(firstNum, secondNum);
+                break;
 
             case "-":
-                return new SubtractOperate();
+                result = subtractOperate.operate(firstNum, secondNum);
+                break;
 
             case "*":
-                return new MultiplyOperate();
+                result = multiplyOperate.operate(firstNum, secondNum);
+                break;
 
             case "/":
                 if (secondNum == 0) {
                     throw new RuntimeException("입력된 분모(secondNum)는 " + secondNum + "입니다. 0으로 나눌 수 없습니다.");
                 } else {
-                    return new DivideOperate();
+                    result = divideOperate.operate(firstNum, secondNum);
+                    break;
                 }
 
             default:
                 throw new RuntimeException("[" + operator + "]" + "은 연산기호가 아닙니다.");
         }
+
+        // 작업3
+        getResults().add(result);
+        return result;
     }
 
     private boolean isNotPositive(int firstNum, int secondNum) {

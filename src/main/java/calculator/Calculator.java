@@ -1,7 +1,5 @@
 package calculator;
 
-import calculator.extendz.fouroperator.Operate;
-
 import java.util.ArrayList;
 
 /**

@@ -1,8 +1,7 @@
 package calculator.extendz.fouroperator;
 
-public class MultiplyOperate implements Operate {
+public class MultiplyOperate {
 
-    @Override
     public double operate(int firstNum, int secondNum) {
         return firstNum * secondNum;
     }
