@@ -67,10 +67,7 @@ public class App {
             // 리스트에 담긴 정보 모두 조회
             System.out.print("저장된 연산결과를 조회하시겠습니까? 아닐 시 enter. (\"inquiry\" 입력 시 조회) : ");
             if (scanner.nextLine().equals("inquiry")) {
-                for (Double value : calculator.getResults()) {
-                    System.out.print("[" + value + "] ");
-                }
-                System.out.println();
+                calculator.findAll();
             }
 
             // while문 종료 확인
