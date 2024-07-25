@@ -60,8 +60,8 @@ public class App {
 
             System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? 아닐 시 enter. (\"remove\" 입력 시 삭제) : ");
             if (scanner.nextLine().equals("remove")) {
-                Double removeValue = calculator.getResults().remove(0);
-                System.out.println("가장 먼저 입력한 값이 삭제되었습니다. 삭제된 값: " + removeValue);
+                Double removeFirstValue = calculator.removeFirst();
+                System.out.println("가장 먼저 입력한 값이 삭제되었습니다. 삭제된 값: " + removeFirstValue);
             }
 
             // 리스트에 담긴 정보 모두 조회

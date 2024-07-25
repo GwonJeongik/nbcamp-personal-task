@@ -18,6 +18,9 @@ import java.util.LinkedList;
  * - 간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현합니다. (Getter 메서드)
  * - 간접 접근을 통해 필드에 접근하여 수정할 수 있도록 구현합니다. (Setter 메서드)
  * - 위 요구사항을 모두 구현 했다면 App 클래스의 main 메서드에서 위에서 구현한 메서드를 활용 해봅니다.
+ * <p>
+ * 4. Calculator 클래스에 저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현한 후---
+ * ---App 클래스의 main 메서드에 삭제 메서드가 활용될 수 있도록 수정합니다.
  */
 
 public class Calculator {
@@ -32,6 +35,10 @@ public class Calculator {
 
     public Double setResults(int index, double setNum) {
         return results.set(index, setNum);
+    }
+
+    public Double removeFirst() {
+        return results.remove(0);
     }
 
 
