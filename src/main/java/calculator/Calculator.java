@@ -48,30 +48,30 @@ import java.util.ArrayList;
  */
 
 //매개변수로 해당 오류 내용을 전달하라는 게 뭔말이지?
-public class Calculator {
+public class Calculator<T extends Number> {
 
     /**
      * calculator를 상속받는 클래스는 결과 저장소, 조회 기능을 공통으로 가져갈 수 있다.
      */
 
-    private final ArrayList<Double> results;
+    private final ArrayList<T> results;
 
     public Calculator() {
         this.results = new ArrayList<>();
     }
 
-    public ArrayList<Double> getResults() {
+    public ArrayList<T> getResults() {
         return results;
     }
 
     public void findAllResults() {
-        for (Double result : results) {
+        for (T result : results) {
             System.out.print("[" + result + "] ");
         }
         System.out.println();
     }
 
-    public Double removeFirst() {
+    public T removeFirst() {
         return results.remove(0);
     }
 }

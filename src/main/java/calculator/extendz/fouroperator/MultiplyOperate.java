@@ -1,10 +1,21 @@
 package calculator.extendz.fouroperator;
 
-public class MultiplyOperate implements Operate{
+import calculator.extendz.Conversion;
+
+public class MultiplyOperate<T extends Number> implements Operate<T> {
+
+    Class<T> genericType;
+
+    public MultiplyOperate(Class<T> genericType) {
+        this.genericType = genericType;
+    }
+
 
     @Override
-    public double operate(int firstNum, int secondNum) {
-        return firstNum * secondNum;
+    public T operate(T firstNum, T secondNum) {
+        Double result = firstNum.doubleValue() * secondNum.doubleValue();
+        return Conversion.conversion(result, genericType);
+
     }
 
 }

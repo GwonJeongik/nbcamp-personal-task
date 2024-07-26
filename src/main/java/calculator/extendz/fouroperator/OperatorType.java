@@ -8,25 +8,20 @@ package calculator.extendz.fouroperator;
 public enum OperatorType {
 
     // MODULO -> 나눗셈의 나머지를 계산하는 수학적 연산
-    ADD("+", new AddOperate()),
-    SUBTRACT("-", new SubtractOperate()),
-    MULTIPLY("*", new MultiplyOperate()),
-    DIVIDE("/", new DivideOperate()),
-    MODULO("%", new ModOperate());
+    ADD("+"),
+    SUBTRACT("-"),
+    MULTIPLY("*"),
+    DIVIDE("/"),
+    MODULO("%");
 
     private final String operator;
-    private final Operate operate;
 
-    OperatorType(String operator, Operate operate) {
+
+    OperatorType(String operator) {
         this.operator = operator;
-        this.operate = operate;
     }
 
     public String getOperator() {
         return operator;
-    }
-
-    public Operate getOperate() {
-        return operate;
     }
 }

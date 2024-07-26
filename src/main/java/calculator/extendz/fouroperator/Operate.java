@@ -1,6 +1,6 @@
 package calculator.extendz.fouroperator;
 
-public interface Operate {
+public interface Operate <T extends Number> {
 
-    double operate(int firstNum, int secondNum);
+    T operate(T firstNum, T secondNum);
 }

@@ -4,6 +4,7 @@ import calculator.extendz.ArithmeticCalculator;
 import calculator.extendz.CircleCalculator;
 import calculator.extendz.fouroperator.OperatorType;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 /**
@@ -50,9 +51,10 @@ public class App {
 
     public static void main(String[] args) {
 
+
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator;
-        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        Calculator<Double> calculator;
+        ArithmeticCalculator<Double> arithmeticCalculator = new ArithmeticCalculator<>(Double.class);
         CircleCalculator circleCalculator = new CircleCalculator();
 
         while (true) {
@@ -63,9 +65,9 @@ public class App {
             switch (option) {
                 case 1:
                     System.out.print("첫 번째 숫자를 입력하세요: ");
-                    int firstNum = scanner.nextInt();
+                    double firstNum = scanner.nextDouble();
                     System.out.print("두 번째 숫자를 입력하세요: ");
-                    int secondNum = scanner.nextInt();
+                    double secondNum = scanner.nextDouble();
                     scanner.nextLine(); // 줄먹기
 
                     // 의식의 흐름 1
@@ -108,7 +110,7 @@ public class App {
             // 오래된 결과 삭제 코드
             System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? 아닐 시 enter. (\"remove\" 입력 시 삭제) : ");
             if (scanner.nextLine().equals("remove")) {
-                Double removeFirstValue = calculator.removeFirst();
+                Number removeFirstValue = calculator.removeFirst();
                 System.out.println("가장 먼저 입력한 값이 삭제되었습니다. 삭제된 값: " + removeFirstValue);
             }
 
