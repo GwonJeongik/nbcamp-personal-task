@@ -85,6 +85,14 @@ public class App {
                     double result = arithmeticCalculator.calculate(firstNum, secondNum, operator);
                     System.out.println("사칙연산 결과는: " + result + "입니다.");
 
+                    //사칙 연산 수행 후, 기준 값보다 큰 결과값들을 출력
+                    System.out.print("저장된 결과값중 일부를 조회하시겠습니까? 아닐 시 아무 키 입력. (\"find\" 입력 시 조회): ");
+                    if (scanner.nextLine().equals("find")) {
+                        System.out.print("조회할 기준 값을 입력하세요: ");
+                        double input = scanner.nextDouble();
+                        arithmeticCalculator.biggerThanInput(input);
+                    }
+
                     calculator = arithmeticCalculator;
                     break;
 

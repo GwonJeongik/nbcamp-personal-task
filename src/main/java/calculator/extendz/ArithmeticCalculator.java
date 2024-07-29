@@ -94,4 +94,9 @@ public class ArithmeticCalculator extends Calculator {
     private boolean isNotPositive(int firstNum, int secondNum) {
         return !(firstNum >= 0 && secondNum >= 0);
     }
+
+    public void biggerThanInput(double input) {
+        getResults().stream().filter(result -> result > input)
+                .forEach(result -> System.out.println("기준 값 " + input + "보다 큰 결과값: " + result));
+    }
 }
