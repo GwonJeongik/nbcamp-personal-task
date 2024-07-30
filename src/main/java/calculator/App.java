@@ -5,6 +5,7 @@ import calculator.extendz.CircleCalculator;
 import calculator.extendz.fouroperator.OperatorType;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -54,8 +55,15 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
         Calculator<Double> calculator;
+        //genericType을 arithmeticCalculator의 생성자로 넘겨준다.
+        // -> arithmeticCalculator의 checkOperate에서 genericType을 연산클래스 생성자로 넘겨준다.
+        // -> 연산 클래스에서 넘어온 genericType를 기반으로 연산이 끝난 후, 타입을에 맞춰서 반환.
         ArithmeticCalculator<Double> arithmeticCalculator = new ArithmeticCalculator<>(Double.class);
         CircleCalculator circleCalculator = new CircleCalculator();
+
+        Object a = 10;
+        Object b = 20;
+
 
         while (true) {
 
@@ -80,12 +88,17 @@ public class App {
                     // java.lang.enum 클래스의 메서드 valueOf() 사용.... -> 아.. 결국 OperatorType의 상수명으로 받아야하는... 구나..
                     // OperatorType operator = OperatorType.valueOf(scanner.nextLine()); -> 실패ㅎㅎ
                     //===============================================================================================
+
                     System.out.print("사칙연산 기호를 입력하세요: ");
                     String operator = scanner.nextLine();
 
                     //사칙 연산 수행
                     double result = arithmeticCalculator.calculate(firstNum, secondNum, operator);
                     System.out.println("사칙연산 결과는: " + result + "입니다.");
+
+                    System.out.print("기준값보다 큰 결과값을 조회\n 기준값을 입력하세요: ");
+                    double input = scanner.nextDouble();
+                    arithmeticCalculator.biggerThanInput(input);
 
                     calculator = arithmeticCalculator;
                     break;

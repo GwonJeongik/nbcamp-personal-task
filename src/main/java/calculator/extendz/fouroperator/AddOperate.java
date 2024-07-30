@@ -14,6 +14,6 @@ public class AddOperate<T extends Number> implements Operate<T> {
     public T operate(T firstNum, T secondNum) {
 
         Double result = firstNum.doubleValue() + secondNum.doubleValue();
-        return Conversion.conversion(result, genericType); //Double.class
+        return Conversion.convertor(result, genericType); //Double.class
     }
 }

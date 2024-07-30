@@ -141,4 +141,15 @@ public class ArithmeticCalculator<T extends Number> extends Calculator<T> {
             }
         }
     }
+
+    //map을 이용해서 주어진 연산을 가지고 내가 가지고 있는 값을 변환
+    public void biggerThanInput(T input) {
+        getResults().stream()
+                .filter(result -> result.doubleValue() > input.doubleValue())
+                .forEach(value -> System.out.println("기준 값 " + input + "보다 큰 결과값: " + value));
+    }
+
+    // 이건 필요없겠다. 연산 결과를 받는 것과는 다르게, 여기서는 convertor의 반환값을 비교하기 때문에
+    // 비교의 결과를 반환하는 메서드를 사용하는 게 맞지 않을까?
+    // 어차피 여기서도 비교연산자를 쓰려면 타입 매개변수를 확정 지어줘야하는데 doubleValue()를 이용  ->  제네릭의 사용 의미가 퇴색
 }

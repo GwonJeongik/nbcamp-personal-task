@@ -2,7 +2,7 @@ package calculator.extendz;
 
 public class Conversion {
 
-    public static <T extends Number> T conversion(Number result, Class<T> genericType) {
+    public static <T extends Number> T  convertor(Number result, Class<T> genericType) {
         if (genericType == Short.class) {
             return (T) Short.valueOf(result.shortValue());
 

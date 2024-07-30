@@ -14,7 +14,7 @@ public class ModOperate<T extends Number> implements Operate<T>  {
     @Override
     public T operate(T firstNum, T secondNum) {
         Double result = firstNum.doubleValue() % secondNum.doubleValue();
-        return Conversion.conversion(result, genericType);
+        return Conversion.convertor(result, genericType);
 
     }
 }
